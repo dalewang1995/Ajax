@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+</head>
+<body>
+<div id="my_view">
+    搜索：<input v-model="search" type="text" />
+    <ul>
+        <li v-for="friend in friends | filterBy search in 'name'"> {{ friend.name }} </li>
+    </ul>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script>
+    var myModel = {
+        name: 'Ashley',
+        age: 24,
+        friends: [{
+            name: 'Bob',
+            age: 21
+        }, {
+            name: 'Jane',
+            age: 20
+        }, {
+            name: 'Anna',
+            age: 29
+        }],
+        search: ''
+    };
+    var myViewModel = new Vue({
+        el: '#my_view',
+        data: myModel
+    });
+</script>
+
+</body>
+</html>
