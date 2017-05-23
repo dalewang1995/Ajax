@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #select1{
+        padding: 1px 50px 1px 1px;
+        display: inline-block;
+        border: 1px solid grey;
+    }
+    li{
+        list-style: none;
+    }
+</style>
+<body>
+<div id="select1">
+    <div class="selcon">
+        <div class="sel">下拉框1</div>
+        <div class="selbtn"></div>
+    </div>
+    <ul class="list">
+        <li>选项1-1</li>
+        <li>选项1-2</li>
+        <li>选项1-3</li>
+    </ul>
+</div>
+<div id="select2">
+    <div class="selcon">
+        <div class="sel">下拉框2</div>
+        <div class="selbtn"></div>
+    </div>
+    <ul class="list">
+        <li>选项2-1</li>
+        <li>选项2-2</li>
+        <li>选项2-3</li>
+    </ul>
+</div>
+<script>
+    function select(obj){
+        var selBtn = obj.querySelector('.selbtn');
+        var sel = obj.querySelector('.sel');
+        var list = obj.querySelector('.list');
+        var opts = obj.querySelectorAll('.list>li');
+        selBtn.onclick = function(ev){
+            list.style.display = 'block';
+            ev.cancelBubble = true;
+        };
+        for(var i=0;i<opts.length;i++){
+            opts[i].onclick = function(){
+                sel.innerHTML = this.innerHTML;
+                list.style.display = 'none';
+            };
+        }
+        document.addEventListener('click',function(){
+            list.style.display = 'none';
+        });
+    };
+    var select1 = document.getElementById('select1');
+    var select2 = document.getElementById('select2');
+    select(select1);
+    select(select2);
+</script>
+</body>
+</html>

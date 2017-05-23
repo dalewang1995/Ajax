@@ -3,8 +3,8 @@
 
 <body>
 <script type="text/javascript">
-    // localStorage
-    // sessionStorage
+    // localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。
+    // sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除
     if (localStorage.pagecount)
     {
         localStorage.pagecount=Number(localStorage.pagecount) +1;
