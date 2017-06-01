@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>img-bug</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        img{
+            display:block;
+            /*display: inline-block; // 默认属性*/
+        }
+        div{
+            border: 1px solid grey;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <img src="img/photo.jpg" alt="">
+</div>
+<p>img-Bug问题</p>
+</body>
+</html>

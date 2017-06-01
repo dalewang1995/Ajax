@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @font-face {
+            font-family: "iconfont";
+            src: url('./font/iconfont.eot?t=1495604869741'); /* IE9*/
+            src: url('./font/iconfont.eot?t=1495604869741#iefix') format('embedded-opentype'), /* IE6-IE8 */
+            url('./font/iconfont.woff?t=1495604869741') format('woff'), /* chrome, firefox */
+            url('./font/iconfont.ttf?t=1495604869741') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+            url('./font/iconfont.svg?t=1495604869741#iconfont') format('svg'); /* iOS 4.1- */
+        }
+        .iconfont {
+            font-family:"iconfont" !important;
+            font-size:14px;
+            font-style:normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .icon-arrow:before {
+            content: "\e618";
+        }
+        .icon-duihao:before {
+            content: "\e64e";
+        }
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        body{
+            font: 16px "微软雅黑";
+            background-color: #333;
+        }
+        #box{
+            width: 500px;
+            height: 326px;
+            border: 3px solid grey;
+            background-color: #fff;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            margin: -163px 0 0 -250px;
+            /*定位到屏幕中间*/
+        }
+        #selectProvince{
+            padding-left: 12px;
+            padding-right: 12px;
+            border: 1px solid #cccccc;
+            width: 164px;
+            height: 36px;
+            background-color: #ffffff;
+            margin: 80px auto;
+            position: relative;
+            line-height: 38px;
+            display: block;
+            color: grey;
+            z-index: 101;
+        }
+        #select-arrow{
+            float: right;
+        }
+        #allProvince{
+            background-color: #fff;
+            border: 1px solid #cccccc;
+            width: 188px;
+            height: auto;
+            line-height: 30px;
+            clear: both;
+            position: absolute;
+            left:0px;
+            top:42px;
+            display: none;
+            z-index: 101;
+        }
+        #allProvince li{
+            padding-left: 12px;
+            color: grey;
+            height: 36px;
+            line-height: 36px;
+            cursor: pointer;
+        }
+        #allProvince li span{
+            display: block;
+        }
+        #allProvince li:hover{
+            background-color: #d5eefa;
+        }
+        #select-arrow{
+            display: inline-block;
+            transition: All 0.3s ease-in-out;
+            -webkit-transition: All 0.3s ease-in-out;
+            -moz-transition: All 0.3s ease-in-out;
+            -o-transition: All 0.3s ease-in-out;
+        }
+        #layer {
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            filter: alpha(opacity=10);
+            opacity:0.1;
+            display: none;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="box">
+        <div id="selectProvince">
+            <span id="select-content">请选择...</span>
+            <span id="select-arrow">
+                <i class="iconfont icon-arrow"></i>
+            </span>
+            <ul id="allProvince">
+                <li><span>安徽</span></li>
+                <li><span>北京</span></li>
+                <li><span>上海</span></li>
+                <li><span>广州</span></li>
+            </ul>
+        </div>
+</div>
+<div id="layer"></div>
+<script>
+
+    var select = document.getElementById('selectProvince');
+    var all = document.getElementById('allProvince');
+    var provs = all.getElementsByTagName('li');
+    var content = document.getElementById('select-content');
+    var arrow = document.getElementById('select-arrow');
+
+    var k, item;
+    for (k in provs) {
+        item = provs[k];
+        item.onclick = function () {
+            content.innerHTML = this.innerHTML;
+            arrow.style.transform = "rotate(180deg)";
+        };
+    }
+
+    select.onclick = function () {
+        var dom = all;
+        var st = ['none', 'block'];
+        // 获取状态
+        var from = dom.style.display || 'none';
+        // 切换状态
+        dom.style.display = st[(st.indexOf(from)+1)%2];
+
+    };
+
+//    function addLoadEvent(func) {
+//        var oldonload = window.onload;
+//        if (typeof window.onload != 'function') {
+//            window.onload = func;
+//        }else {
+//            window.onload = function() {
+//                oldonload();
+//                func();
+//            }
+//        }
+//    }
+//    function getDom(id) {
+//        return document.getElementById(id);
+//    }
+//    function  showProvince() {
+//        getDom("selectProvince").onclick = function () {
+//            showAllProvince();
+//            selectProvince();
+//        }
+//    }
+//    function showAllProvince() {
+//        getDom("allProvince").style.display = "block";
+//        getDom("select-arrow").style.transform = "rotate(180deg)";
+//
+//    }
+//    function hideAllProvince() {
+//        getDom("allProvince").style.display = "none";
+//        getDom("select-arrow").style.transform = "rotate(0deg)";
+//    }
+//    function selectProvince() {
+//        var pro = getDom("allProvince").getElementsByTagName("li")
+//        var links;
+//        for(let i=0; i <pro.length; i++){
+//            links = pro[i].getElementsByTagName("span");
+//            for(let j=0; j<links.length; j++){
+//                links[j].onclick = function () {
+//                    getDom("select-content").innerHTML = this.innerHTML;
+//                    hideAllProvince();
+//                }
+//            }
+//
+//        }
+//    }
+//    addLoadEvent(showProvince());
+</script>
+</body>
+</html>

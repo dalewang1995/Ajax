@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    li{
+      list-style: none;
+    }
+    body{
+        font: 16px "微软雅黑";
+        background-color: #333;
+    }
+    #box{
+        width: 500px;
+        height: 326px;
+        border: 3px solid #000;
+        background-color: #fff;
+        position: absolute;
+        left: 50%;
+        top:50%;
+        margin: -163px 0 0 -250px;
+        /*定位到屏幕中间*/
+    }
+    .province{
+        width: 320px;
+        height: 42px;
+        background-color: red;
+        margin: 80px auto;
+        position: relative;
+    }
+    .province > strong{
+        color: white;
+        width: 64px;
+        height: 42px;
+        line-height: 42px;
+        display: block;
+        float: left;
+        padding-left: 10px;
+    }
+    #selectProvince{
+        background-color: #fff;
+        width: 200px;
+        height: 28px;
+        display: block;
+        float: left;
+        margin-top: 7px;
+        padding-left: 8px;
+        color: #cccccc;
+        cursor: pointer;
+        line-height: 28px;
+    }
+    #allProvince {
+        background-color: #fff;
+        border: 1px solid #cccccc;
+        border-top: none;
+        width: 318px;
+        height: auto;
+        line-height: 30px;
+        clear: both;
+        position: absolute;
+        left:0px;
+        top:42px;
+        display: none;
+    }
+    #allProvince li{
+        height: 30px;
+        border-bottom: 1px solid #cccccc;
+        cursor: pointer;
+    }
+    #allProvince li b{
+        font-weight: bold;
+        padding: 0 10px;
+    }
+    #allProvince li:hover{
+        color: red;
+    }
+</style>
+<body>
+<div id="box">
+    <div class="province">
+        <strong>送货至：</strong>
+        <span id="selectProvince">北京</span>
+        <ul id="allProvince">
+            <li><b>A</b><span>安徽</span></li>
+            <li><b>B</b><span>北京</span></li>
+            <li><b>S</b><span>上海</span></li>
+            <li><b>G</b><span>广州</span></li>
+            <li><b>F</b><span>福建</span></li>
+        </ul>
+    </div>
+</div>
+<script>
+    
+    function addLoadEvent(func) {
+        var oldonload = window.onload;
+        if (typeof window.onload != 'function') {
+            window.onload = func;
+        }else {
+            window.onload = function() {
+                oldonload();
+                func();
+            }
+        }
+    }
+    function getDom(id) {
+        return document.getElementById(id);
+    }
+    function  showProvince() {
+        getDom("selectProvince").onclick = function () {
+            showAllProvince();
+            selectProvince();
+        }
+    }
+    function showAllProvince() {
+        getDom("allProvince").style.display = "block";
+    }
+    function hideAllProvince() {
+        getDom("allProvince").style.display = "none";
+    }
+    function selectProvince() {
+        var pro = getDom("allProvince").getElementsByTagName("li")
+        var links;
+        for(var i=0; i <pro.length; i++){
+            links = pro[i].getElementsByTagName("span");
+            for(var j=0; j<links.length; j++){
+                links[j].onclick = function () {
+                    getDom("selectProvince").innerHTML = this.innerHTML;
+                    hideAllProvince();
+                }
+            }
+        }
+    }
+    addLoadEvent(showProvince());
+</script>
+</body>
+</html>
