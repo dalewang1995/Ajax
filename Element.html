@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">	
+	<title>Element</title>
+</head>
+<body>
+<div id="myDiv" data-mySet="wang" onclick="printOk()" style="color: grey">
+	lalala
+</div>
+<script>
+	// Element  
+	var oDiv = document.getElementById("myDiv"); 
+	console.log(oDiv.className);
+	console.log(oDiv.onclick);
+	console.log(oDiv.style);
+
+	console.log("--------------------")	
+	// console.log(oDiv.data-mySet);
+	console.log(typeof oDiv.getAttribute("onclick"))
+	console.log(oDiv.getAttribute("onclick"))
+	console.log(oDiv.getAttribute("class"))
+	console.log(oDiv.getAttribute("data-mySet"))
+	console.log(oDiv.getAttribute("style"))
+
+	function printOk() {
+		console.log("OK");
+	}
+
+	console.log(oDiv.nodeType)  // 1
+	console.log(oDiv.attributes);   //return  NameNodeMap object 
+	console.log(oDiv.attributes.getNamedItem("id").value);
+	// change id
+	oDiv.attributes["id"].value = "secondId";
+	console.log(oDiv.attributes.getNamedItem("id").value);
+	//oDiv.attributes.removeNamedItem("style")
+	//console.log(oDiv.removeAttribute("id"));
+
+	function outputAttributes (element) {
+		var pairs = new Array(),
+			attrName,
+			attrValue,
+			i,
+			len;
+
+		for (i=0, len=element.attributes.length; i < len; i++) {
+			attrName = element.attributes[i].nodeName;
+			attrValue = element.attributes[i].value;
+			if (element.attributes[i].specified ) {
+				pairs.push(attrName + "=" + attrValue); 
+			}
+
+		}
+		return pairs.join(" ");
+	}
+
+	console.log(outputAttributes(oDiv));
+
+
+	var div = document.createElement("span");
+	div.className = "mySpan";
+	// add dom tree
+	document.body.appendChild(div);  
+</script>
+</body>
+</html>
+
+
+
+
+

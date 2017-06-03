@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Node 节点</title>
+</head>
+<body>
+<div>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+	</ul>
+</div>
+<script>
+   /* Node节点类型
+	*
+	*/
+	node = document.getElementsByTagName('ul');
+	if (node[0].nodeType == Node.ELEMENT_NODE) {
+		console.log("nodeType为元素")
+	}
+
+	if (node[0].childNodes instanceof Array) {
+		console.log("True");
+	}else{
+		console.log("False")
+	}
+
+	if (node[0].childNodes instanceof Object) {
+		console.log("True");
+	}else{
+		console.log("False")
+	}
+	//节点遍历
+	console.log(node[0].childNodes.length);
+	// cloneNode()
+	var deepList = node[0].cloneNode(true);
+	console.log(deepList.childNodes);
+	console.log(deepList.childNodes.length);
+
+	console.log(node[0].childNodes.item(0));
+
+	console.log(node[0].childNodes.item(1).ownerDocument);
+	// NodeList 对象转数组 ie8及以上
+	var arrayOfNodes = Array.prototype.slice.call(node[0].childNodes, 0);
+	// 兼容性写法
+	function convertToArray(nodes) {
+		var array = null
+		try{
+			array = Array.prototype.slice.call(nodes, 0);
+		} catch (ex) {
+			array = new Array;
+			for (var i=0, len=nodes.length; i < len; i++) {
+				array.push(nodes[i]);
+			}
+		}
+
+		return array;
+	}
+	console.log(arrayOfNodes[0]);
+
+	if (arrayOfNodes instanceof Array){
+		console.log("True");
+	}else{
+		console.log("False");
+	}	
+
+	if (node[0].nodeType == 1) {
+		value1 = node[0].nodeName;
+		value2 = node[0].nodeValue;
+		console.log("value1"+value1+" "+"value2"+value2); 
+	}
+</script>
+</body>
+</html>
+
